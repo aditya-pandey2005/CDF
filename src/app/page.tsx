@@ -451,10 +451,7 @@ export default function Home() {
         >
           <div className="max-w-4xl mx-auto flex flex-col items-center gap-3 text-center">
             <p className="text-sm md:text-base text-[var(--text-secondary)] font-medium">
-              Built for CDF Round 2 — Connecting Dreams Foundation
-            </p>
-            <p className="text-xs text-[var(--text-muted)]">
-              Powered by Gemini AI + Groq Whisper
+              Connecting Dreams Foundation
             </p>
 
             {/* Small decorative bar */}
