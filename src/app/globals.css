@@ -1,26 +1,334 @@
 @import "tailwindcss";
 
+/* ─── Google Fonts (loaded via next/font in layout.tsx for optimization) ─── */
+
+/* ─── CSS Custom Properties ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --bg-primary: #0a0f1e;
+  --bg-surface: #131b2e;
+  --bg-card: #1a2340;
+
+  /* Accents */
+  --accent-blue: #3b82f6;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-purple: #8b5cf6;
+  --accent-rose: #f43f5e;
+
+  /* Text */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Borders & Radius */
+  --border: #1e293b;
+  --radius: 16px;
 }
 
+/* ─── Tailwind v4 Theme Tokens ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-card: var(--bg-card);
+
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-rose: var(--accent-rose);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border: var(--border);
+
+  --font-sans: var(--font-inter);
+  --font-hindi: var(--font-noto-sans-devanagari);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Hindi / Devanagari text class ─── */
+.hindi-text {
+  font-family: var(--font-noto-sans-devanagari), "Noto Sans Devanagari", sans-serif;
+}
+
+/* ─── Selection styling ─── */
+::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+  color: var(--text-primary);
+}
+
+/* ─── Scrollbar styling (Webkit) ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ─── Keyframe Animations ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes waveform {
+  0% {
+    transform: scaleY(0.4);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3),
+      0 0 60px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5),
+      0 0 80px rgba(59, 130, 246, 0.2),
+      0 0 120px rgba(16, 185, 129, 0.1);
+  }
+}
+
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* ─── Animation Utilities ─── */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ─── Glassmorphism Utility ─── */
+.glass {
+  background: rgba(26, 35, 64, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+/* ─── Glow Utilities ─── */
+.glow-blue {
+  box-shadow:
+    0 0 16px rgba(59, 130, 246, 0.3),
+    0 0 48px rgba(59, 130, 246, 0.1);
+}
+
+.glow-emerald {
+  box-shadow:
+    0 0 16px rgba(16, 185, 129, 0.3),
+    0 0 48px rgba(16, 185, 129, 0.1);
+}
+
+.glow-amber {
+  box-shadow:
+    0 0 16px rgba(245, 158, 11, 0.3),
+    0 0 48px rgba(245, 158, 11, 0.1);
+}
+
+.glow-purple {
+  box-shadow:
+    0 0 16px rgba(139, 92, 246, 0.3),
+    0 0 48px rgba(139, 92, 246, 0.1);
+}
+
+.glow-rose {
+  box-shadow:
+    0 0 16px rgba(244, 63, 94, 0.3),
+    0 0 48px rgba(244, 63, 94, 0.1);
+}
+
+/* ─── Smart Board Text (optimized for projection) ─── */
+.smart-board-text {
+  font-size: max(20px, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* ─── Smooth Transitions for Interactive Elements ─── */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+  transition: all 0.2s ease-out;
+}
+
+/* ─── Focus Visible Ring ─── */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
