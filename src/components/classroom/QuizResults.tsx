@@ -54,30 +54,30 @@ export default function QuizResults({
     if (scorePercent === 100) {
       return {
         message: 'Perfect! Excellent! 🏆',
-        colorClass: 'text-[var(--accent-emerald)]',
-        borderGlowClass: 'border-[var(--accent-emerald)]/30 shadow-[var(--accent-emerald)]/10',
-        ringColor: 'var(--accent-emerald)',
+        colorClass: 'text-emerald-600',
+        borderGlowClass: 'border-emerald-200 bg-emerald-50/20 shadow-emerald-50',
+        ringColor: '#10b981',
       };
     } else if (scorePercent >= 80) {
       return {
         message: 'Bahut Achhe! Great job! 🎉',
-        colorClass: 'text-[var(--accent-emerald)]',
-        borderGlowClass: 'border-[var(--accent-emerald)]/30 shadow-[var(--accent-emerald)]/10',
-        ringColor: 'var(--accent-emerald)',
+        colorClass: 'text-emerald-600',
+        borderGlowClass: 'border-emerald-200 bg-emerald-50/20 shadow-emerald-50',
+        ringColor: '#10b981',
       };
     } else if (scorePercent >= 60) {
       return {
         message: 'Achha hai! Keep it up! 👍',
-        colorClass: 'text-[var(--accent-amber)]',
-        borderGlowClass: 'border-[var(--accent-amber)]/30 shadow-[var(--accent-amber)]/10',
-        ringColor: 'var(--accent-amber)',
+        colorClass: 'text-amber-600',
+        borderGlowClass: 'border-amber-200 bg-amber-50/20 shadow-amber-50',
+        ringColor: '#f59e0b',
       };
     } else {
       return {
         message: 'Koi baat nahi, phir try karo! 💪',
-        colorClass: 'text-[var(--accent-rose)]',
-        borderGlowClass: 'border-[var(--accent-rose)]/30 shadow-[var(--accent-rose)]/10',
-        ringColor: 'var(--accent-rose)',
+        colorClass: 'text-rose-600',
+        borderGlowClass: 'border-rose-200 bg-rose-50/20 shadow-rose-50',
+        ringColor: '#f43f5e',
       };
     }
   }, [scorePercent]);
@@ -134,7 +134,7 @@ export default function QuizResults({
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8 flex flex-col gap-8 animate-slide-up">
       {/* ─── Header Result Card ─── */}
-      <Card variant="elevated" className={`relative overflow-hidden border ${borderGlowClass} shadow-2xl`}>
+      <Card variant="elevated" className={`relative overflow-hidden border ${borderGlowClass} shadow-md bg-white`}>
         {/* Glow backdrop */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -152,7 +152,7 @@ export default function QuizResults({
                 cx="72"
                 cy="72"
                 r={radius}
-                className="stroke-slate-800"
+                className="stroke-slate-100"
                 strokeWidth={strokeWidth}
                 fill="transparent"
               />
@@ -173,10 +173,10 @@ export default function QuizResults({
               />
             </svg>
             <div className="absolute flex flex-col items-center justify-center">
-              <span className="text-4xl font-extrabold text-[var(--text-primary)]">
+              <span className="text-4xl font-extrabold text-slate-800">
                 {animatedScore}
               </span>
-              <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wider">
+              <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">
                 out of {total}
               </span>
             </div>
@@ -184,14 +184,14 @@ export default function QuizResults({
 
           {/* Performance text */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3">
-            <span className="text-sm font-semibold tracking-wider text-[var(--text-muted)] uppercase">
+            <span className="text-sm font-semibold tracking-wider text-slate-400 uppercase">
               Quiz Completed 🏁
             </span>
             <h2 className={`text-3xl md:text-5xl font-black ${colorClass} tracking-tight leading-tight`}>
               {formatTextWithHindi(message)}
             </h2>
-            <p className="text-base text-[var(--text-secondary)] mt-1">
-              Aapne <span className="font-bold text-[var(--text-primary)]">{scorePercent}%</span> questions sahi kiye!
+            <p className="text-base text-slate-600 mt-1">
+              Aapne <span className="font-bold text-slate-800">{scorePercent}%</span> questions sahi kiye!
             </p>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function QuizResults({
 
       {/* ─── Review Section ─── */}
       <div className="flex flex-col gap-4">
-        <h3 className="text-xl font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2 flex items-center gap-2">
+        <h3 className="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
           <span>📝</span> Review Answers (उत्तरों की समीक्षा)
         </h3>
 
@@ -213,10 +213,10 @@ export default function QuizResults({
               <Card
                 key={question.id || index}
                 variant="default"
-                className={`transition-all duration-300 overflow-hidden border ${
+                className={`transition-all duration-300 overflow-hidden border bg-white ${
                   isCorrect
-                    ? 'border-[var(--accent-emerald)]/20 bg-[var(--accent-emerald)]/5'
-                    : 'border-[var(--accent-rose)]/20 bg-[var(--accent-rose)]/5'
+                    ? 'border-emerald-100 bg-emerald-50/20'
+                    : 'border-rose-100 bg-rose-50/20'
                 }`}
               >
                 <div
@@ -226,21 +226,21 @@ export default function QuizResults({
                   <div className="flex items-start gap-4">
                     <span
                       className={`flex items-center justify-center w-8 h-8 rounded-full text-white font-bold shrink-0 text-sm mt-0.5 ${
-                        isCorrect ? 'bg-[var(--accent-emerald)]' : 'bg-[var(--accent-rose)]'
+                        isCorrect ? 'bg-emerald-500' : 'bg-rose-500'
                       }`}
                     >
                       {isCorrect ? '✓' : '✗'}
                     </span>
                     <div className="flex flex-col gap-1">
-                      <span className="text-xs text-[var(--text-muted)] font-semibold uppercase tracking-wider">
+                      <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
                         Question {index + 1}
                       </span>
-                      <p className="text-lg font-bold text-[var(--text-primary)] leading-normal pr-4">
+                      <p className="text-lg font-bold text-slate-800 leading-normal pr-4">
                         {formatTextWithHindi(question.question)}
                       </p>
                     </div>
                   </div>
-                  <span className="text-2xl text-[var(--text-muted)] font-mono shrink-0">
+                  <span className="text-2xl text-slate-400 font-mono shrink-0">
                     {isOpen ? '−' : '+'}
                   </span>
                 </div>
@@ -248,7 +248,7 @@ export default function QuizResults({
                 {/* Animated collapse review panel */}
                 <div
                   className={`transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-[800px] mt-6 opacity-100 border-t border-[var(--border)] pt-4' : 'max-h-0 opacity-0 pointer-events-none'
+                    isOpen ? 'max-h-[800px] mt-6 opacity-100 border-t border-slate-200 pt-4' : 'max-h-0 opacity-0 pointer-events-none'
                   }`}
                 >
                   {/* Options List */}
@@ -258,14 +258,14 @@ export default function QuizResults({
                       const isSelected = selected === optKey;
                       const isOptionCorrect = question.correct === optKey;
 
-                      let optBgClass = 'bg-slate-800/40 border-[var(--border)] text-[var(--text-secondary)]';
+                      let optBgClass = 'bg-slate-50 border-slate-200 text-slate-700';
                       if (isSelected) {
                         optBgClass = isCorrect
-                          ? 'bg-[var(--accent-emerald)]/20 border-[var(--accent-emerald)] text-[var(--accent-emerald)] font-semibold'
-                          : 'bg-[var(--accent-rose)]/20 border-[var(--accent-rose)] text-[var(--accent-rose)] font-semibold';
+                          ? 'bg-emerald-50 border-emerald-500 text-emerald-700 font-semibold'
+                          : 'bg-rose-50 border-rose-500 text-rose-700 font-semibold';
                       } else if (isOptionCorrect) {
                         // Highlight correct one in green if user got it wrong
-                        optBgClass = 'bg-[var(--accent-emerald)]/20 border-[var(--accent-emerald)] text-[var(--accent-emerald)] font-semibold';
+                        optBgClass = 'bg-emerald-50 border-emerald-500 text-emerald-700 font-semibold';
                       }
 
                       return (
@@ -277,11 +277,11 @@ export default function QuizResults({
                             className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold shrink-0 ${
                               isSelected
                                 ? isCorrect
-                                  ? 'bg-[var(--accent-emerald)] text-white'
-                                  : 'bg-[var(--accent-rose)] text-white'
+                                  ? 'bg-emerald-500 text-white'
+                                  : 'bg-rose-500 text-white'
                                 : isOptionCorrect
-                                ? 'bg-[var(--accent-emerald)] text-white'
-                                : 'bg-slate-700 text-[var(--text-secondary)]'
+                                ? 'bg-emerald-500 text-white'
+                                : 'bg-slate-200 text-slate-600'
                             }`}
                           >
                             {optKey}
@@ -295,11 +295,11 @@ export default function QuizResults({
                   </div>
 
                   {/* Explanation box */}
-                  <div className="p-4 rounded-xl bg-slate-900/60 border border-[var(--border)] flex flex-col gap-2">
-                    <span className="text-xs text-[var(--accent-blue)] font-bold uppercase tracking-wider flex items-center gap-1">
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+                    <span className="text-xs text-blue-600 font-bold uppercase tracking-wider flex items-center gap-1">
                       <span>💡</span> Explanation (व्याख्या)
                     </span>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    <p className="text-sm text-slate-600 leading-relaxed">
                       {formatTextWithHindi(question.explanation)}
                     </p>
                   </div>
@@ -316,7 +316,7 @@ export default function QuizResults({
           variant="secondary"
           size="lg"
           onClick={onRetry}
-          className="w-full sm:flex-1 py-4 text-base font-bold shadow-md hover:scale-[1.02]"
+          className="w-full sm:flex-1 py-4 text-base font-bold shadow-sm hover:scale-[1.02] bg-white border border-slate-200 hover:bg-slate-50 text-slate-700"
         >
           🔄 Phir Se Quiz Lo (Retry)
         </Button>
@@ -324,7 +324,7 @@ export default function QuizResults({
           variant="primary"
           size="lg"
           onClick={onNewCommand}
-          className="w-full sm:flex-1 py-4 text-base font-bold bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 shadow-md shadow-purple-500/25 hover:scale-[1.02]"
+          className="w-full sm:flex-1 py-4 text-base font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 hover:scale-[1.02]"
         >
           🎤 Naya Quiz Banao (New Quiz)
         </Button>

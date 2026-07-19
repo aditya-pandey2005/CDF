@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@google/genai": "^2.9.0",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
     "chart.js": "^4.5.1",
     "groq-sdk": "^1.2.1",
     "mermaid": "^11.15.0",

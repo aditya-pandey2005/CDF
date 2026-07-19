@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 /* ─── Mode Card Data ─── */
 
@@ -207,10 +209,25 @@ function ParticleDots() {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+      setLoading(false);
+    }).catch(() => {
+      setLoading(false);
+    });
   }, []);
+
+  const handleSignOut = async () => {
+    const { signOutAction } = await import("@/app/login/actions");
+    await signOutAction();
+    setUser(null);
+  };
 
   return (
     <>
@@ -245,6 +262,42 @@ export default function Home() {
 
         {/* Ambient particles */}
         <ParticleDots />
+
+        {/* ── Navigation Header ── */}
+        <header className="w-full max-w-6xl mx-auto px-6 h-20 flex items-center justify-between z-10 relative">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🎓</span>
+            <span className="text-xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              SikshaMitra
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {loading ? (
+              <div className="h-8 w-20 animate-pulse bg-white/5 rounded-lg" />
+            ) : user ? (
+              <>
+                <span className="text-xs md:text-sm text-[var(--text-secondary)] hidden sm:inline-block">
+                  Logged in as <strong className="text-[var(--text-primary)]">{user.email}</strong>
+                </span>
+                <Link href="/classroom">
+                  <Button variant="primary" size="sm">
+                    Classroom 🎤
+                  </Button>
+                </Link>
+                <Button variant="secondary" size="sm" onClick={handleSignOut}>
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Link href="/login">
+                <Button variant="secondary" size="sm">
+                  Sign In 🔑
+                </Button>
+              </Link>
+            )}
+          </div>
+        </header>
 
         {/* ══════════════════════════════════════════════════
             HERO SECTION
@@ -425,7 +478,7 @@ export default function Home() {
                   animation: "cta-glow 3s ease-in-out infinite",
                 }}
               >
-                Start Teaching 🎤
+                {user ? "Go to Classroom 🎤" : "Start Teaching 🎤"}
               </Button>
             </Link>
           </div>

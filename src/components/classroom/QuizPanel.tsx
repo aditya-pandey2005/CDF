@@ -197,13 +197,13 @@ export default function QuizPanel({
       <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto px-6 py-12 pb-36 animate-fade-in">
         <div className="text-center py-12 flex flex-col items-center justify-center gap-4">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full border-4 border-[var(--border)] border-t-[var(--accent-emerald)] animate-spin" />
+            <div className="w-16 h-16 rounded-full border-4 border-slate-100 border-t-emerald-600 animate-spin" />
             <span className="absolute inset-0 flex items-center justify-center text-xl">📝</span>
           </div>
-          <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent animate-pulse">
+          <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent animate-pulse">
             SikshaMitra quiz taiyyar kar rahi hai... 🧠
           </p>
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="text-sm text-slate-500">
             Generating customized multiple choice questions for Grade {gradeLevel}
           </p>
         </div>
@@ -214,14 +214,14 @@ export default function QuizPanel({
   // Error Screen
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center text-center p-8 max-w-md mx-auto my-12 gap-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 animate-fade-in">
+      <div className="flex flex-col items-center justify-center text-center p-8 max-w-md mx-auto my-12 gap-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-700 animate-fade-in">
         <div className="text-4xl">⚠️</div>
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-bold">Quiz taiyyar nahi ho payi!</h3>
-          <p className="text-sm text-rose-300/80">
+          <p className="text-sm text-rose-600">
             Kripya network check karein aur phir se koshish karein.
           </p>
-          {error && <p className="text-xs text-[var(--text-muted)] font-mono mt-1">{error}</p>}
+          {error && <p className="text-xs text-rose-500 font-mono mt-1">{error}</p>}
         </div>
         <Button variant="accent" onClick={fetchQuiz} className="px-6">
           Quiz Dobara Load Karein 🔄 (Retry)
@@ -251,24 +251,24 @@ export default function QuizPanel({
       {/* ─── Quiz Header ─── */}
       <div className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[var(--text-primary)] tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
             📝 Quiz: {topic}
           </h2>
           <div className="flex items-center gap-3">
             {/* Timer pill */}
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/80 border border-[var(--border)] text-sm font-semibold text-[var(--text-secondary)] font-mono">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-sm font-semibold text-slate-700 font-mono">
               ⏱️ {formatTime(secondsElapsed)}
             </span>
-            <span className="text-sm font-bold text-[var(--text-secondary)]">
+            <span className="text-sm font-bold text-slate-500">
               Question {currentIndex + 1} of {questions.length}
             </span>
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden border border-[var(--border)]">
+        <div className="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden border border-slate-300/40">
           <div
-            className="h-full bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-emerald)] transition-all duration-300 ease-out"
+            className="h-full bg-gradient-to-r from-blue-600 to-emerald-600 transition-all duration-300 ease-out"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -276,14 +276,14 @@ export default function QuizPanel({
 
       {/* ─── Question Card ─── */}
       {currentQuestion && (
-        <Card variant="elevated" className="flex flex-col gap-8 py-8 md:px-10 border border-slate-800 shadow-2xl">
+        <Card variant="elevated" className="flex flex-col gap-8 py-8 md:px-10 border border-slate-200 bg-white shadow-sm">
           {/* Question Text */}
           <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-10 h-10 rounded-2xl bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] text-lg font-bold shrink-0">
+            <span className="flex items-center justify-center w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 text-lg font-bold shrink-0">
               Q{currentIndex + 1}
             </span>
             <div className="flex-1">
-              <h3 className="text-2xl md:text-3xl font-bold leading-normal text-[var(--text-primary)] smart-board-text">
+              <h3 className="text-2xl md:text-3xl font-bold leading-normal text-slate-800 smart-board-text">
                 {formatTextWithHindi(currentQuestion.question)}
               </h3>
             </div>
@@ -292,10 +292,10 @@ export default function QuizPanel({
             <button
               onClick={speakCurrentQuestion}
               aria-label="Read question aloud"
-              className={`p-3 rounded-xl border border-[var(--border)] shrink-0 transition-all duration-200 active:scale-90 hover:bg-slate-800 ${
+              className={`p-3 rounded-xl border border-slate-200 shrink-0 transition-all duration-200 active:scale-90 hover:bg-slate-100 ${
                 isSpeaking
-                  ? 'bg-[var(--accent-blue)]/10 border-[var(--accent-blue)] text-[var(--accent-blue)] animate-pulse'
-                  : 'bg-slate-900/60 text-[var(--text-secondary)]'
+                  ? 'bg-blue-50 border-blue-500 text-blue-600 animate-pulse'
+                  : 'bg-slate-50 text-slate-500'
               }`}
             >
               <svg
@@ -322,8 +322,8 @@ export default function QuizPanel({
               const isSelected = selectedOption === optKey;
 
               const buttonBorderColor = isSelected
-                ? 'border-[var(--accent-blue)] bg-[var(--accent-blue)] text-white shadow-lg shadow-blue-500/20'
-                : 'border-[var(--border)] bg-slate-900/40 text-[var(--text-secondary)] hover:border-[var(--accent-blue)]/60 hover:bg-slate-800/30';
+                ? 'border-blue-600 bg-blue-600 text-white shadow-md shadow-blue-600/10'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-500 hover:bg-blue-50/20';
 
               return (
                 <button
@@ -340,8 +340,8 @@ export default function QuizPanel({
                       flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold shrink-0
                       ${
                         isSelected
-                          ? 'bg-white text-[var(--accent-blue)]'
-                          : 'bg-slate-800 text-[var(--text-secondary)] group-hover:bg-slate-700'
+                          ? 'bg-white text-blue-600'
+                          : 'bg-slate-200 text-slate-600 group-hover:bg-slate-300'
                       }
                     `}
                   >

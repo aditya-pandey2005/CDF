@@ -105,13 +105,13 @@ export default function ConceptExplainer({
         {/* Loading title and thinking message */}
         <div className="text-center py-6 flex flex-col items-center justify-center gap-4">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full border-4 border-[var(--border)] border-t-[var(--accent-blue)] animate-spin" />
+            <div className="w-16 h-16 rounded-full border-4 border-slate-100 border-t-blue-600 animate-spin" />
             <span className="absolute inset-0 flex items-center justify-center text-xl">🤔</span>
           </div>
-          <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+          <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent animate-pulse">
             SikshaMitra soch rahi hai... 🤔
           </p>
-          <p className="text-sm text-[var(--text-muted)]">
+          <p className="text-sm text-slate-500">
             Generating explanation and interactive diagram
           </p>
         </div>
@@ -119,27 +119,27 @@ export default function ConceptExplainer({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Left column skeleton */}
           <div className="flex flex-col gap-4">
-            <div className="h-10 bg-slate-800/50 rounded-xl w-3/4 animate-pulse" />
-            <div className="h-[400px] bg-slate-800/30 rounded-2xl border border-[var(--border)] w-full animate-pulse flex items-center justify-center">
-              <span className="text-[var(--text-muted)] text-sm">Creating flowchart...</span>
+            <div className="h-10 bg-slate-200 rounded-xl w-3/4 animate-pulse" />
+            <div className="h-[400px] bg-slate-100 rounded-2xl border border-slate-200 w-full animate-pulse flex items-center justify-center">
+              <span className="text-slate-400 text-sm">Creating flowchart...</span>
             </div>
           </div>
 
           {/* Right column skeleton */}
           <div className="flex flex-col gap-6">
             <div className="space-y-3">
-              <div className="h-6 bg-slate-800/50 rounded-xl w-1/3 animate-pulse" />
-              <div className="h-4 bg-slate-800/30 rounded-md w-full animate-pulse" />
-              <div className="h-4 bg-slate-800/30 rounded-md w-11/12 animate-pulse" />
-              <div className="h-4 bg-slate-800/30 rounded-md w-10/12 animate-pulse" />
+              <div className="h-6 bg-slate-200 rounded-xl w-1/3 animate-pulse" />
+              <div className="h-4 bg-slate-100 rounded-md w-full animate-pulse" />
+              <div className="h-4 bg-slate-100 rounded-md w-11/12 animate-pulse" />
+              <div className="h-4 bg-slate-100 rounded-md w-10/12 animate-pulse" />
             </div>
 
             <div className="space-y-4">
-              <div className="h-6 bg-slate-800/50 rounded-xl w-1/4 animate-pulse" />
+              <div className="h-6 bg-slate-200 rounded-xl w-1/4 animate-pulse" />
               {[1, 2, 3].map((i) => (
-                <div key={i} className="flex gap-4 p-4 rounded-xl border border-[var(--border)] bg-slate-800/20 animate-pulse">
-                  <div className="w-8 h-8 rounded-full bg-slate-800 shrink-0" />
-                  <div className="h-6 bg-slate-800 rounded-md w-5/6" />
+                <div key={i} className="flex gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50 animate-pulse">
+                  <div className="w-8 h-8 rounded-full bg-slate-200 shrink-0" />
+                  <div className="h-6 bg-slate-200 rounded-md w-5/6" />
                 </div>
               ))}
             </div>
@@ -151,14 +151,14 @@ export default function ConceptExplainer({
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center text-center p-8 max-w-md mx-auto my-12 gap-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 animate-fade-in">
+      <div className="flex flex-col items-center justify-center text-center p-8 max-w-md mx-auto my-12 gap-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-700 animate-fade-in shadow-sm">
         <div className="text-4xl">⚠️</div>
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-bold">Kuch galat ho gaya!</h3>
-          <p className="text-sm text-rose-300/80">
+          <p className="text-sm text-rose-600">
             Hum explanation nahi la paaye. Kripya connection check karein aur retry karein.
           </p>
-          {error && <p className="text-xs text-[var(--text-muted)] font-mono mt-1">{error}</p>}
+          {error && <p className="text-xs text-rose-500 font-mono mt-1">{error}</p>}
         </div>
         <Button variant="accent" onClick={fetchExplanation} className="px-6">
           Phir se koshish karein 🔄 (Retry)
@@ -175,10 +175,10 @@ export default function ConceptExplainer({
         {/* ── Left Column ── */}
         <div className="flex flex-col gap-6">
           <div>
-            <span className="text-sm font-semibold tracking-wider text-[var(--text-muted)] uppercase">
+            <span className="text-sm font-semibold tracking-wider text-slate-400 uppercase">
               Grade {gradeLevel} Topic
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent mt-1 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent mt-1 leading-tight">
               {topic}
             </h2>
           </div>
@@ -187,8 +187,8 @@ export default function ConceptExplainer({
             {explanation?.diagram ? (
               <MermaidRenderer chart={explanation.diagram} />
             ) : (
-              <div className="flex items-center justify-center p-8 rounded-[var(--radius)] bg-[var(--bg-surface)] border border-[var(--border)] w-full h-[300px]">
-                <p className="text-[var(--text-secondary)]">No diagram available for this topic.</p>
+              <div className="flex items-center justify-center p-8 rounded-[var(--radius)] bg-white border border-slate-200 w-full h-[300px]">
+                <p className="text-slate-500">No diagram available for this topic.</p>
               </div>
             )}
           </div>
@@ -198,14 +198,14 @@ export default function ConceptExplainer({
         <div className="flex flex-col gap-8">
           {/* Explanation Section */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-xl font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
               <span>📖</span> Explanation (समझाओ)
             </h3>
             <div className="flex flex-col gap-2">
               {paragraphs.map((p, idx) => (
                 <p
                   key={idx}
-                  className="smart-board-text text-[var(--text-primary)] leading-relaxed mb-2"
+                  className="smart-board-text text-slate-700 leading-relaxed mb-2"
                 >
                   {formatTextWithHindi(p)}
                 </p>
@@ -216,7 +216,7 @@ export default function ConceptExplainer({
           {/* Key Points Section */}
           {explanation?.keyPoints && explanation.keyPoints.length > 0 && (
             <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-bold text-[var(--text-primary)] border-b border-[var(--border)] pb-2 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-slate-800 border-b border-slate-200 pb-2 flex items-center gap-2">
                 <span>✨</span> Key Points (मुख्य बातें)
               </h3>
               <div className="flex flex-col gap-3">
@@ -231,7 +231,7 @@ export default function ConceptExplainer({
                       <span className={`flex items-center justify-center w-8 h-8 rounded-full text-white font-bold shrink-0 text-sm ${colorConfig.numberBg}`}>
                         {index + 1}
                       </span>
-                      <span className="text-lg font-medium text-[var(--text-primary)] leading-relaxed">
+                      <span className="text-lg font-medium text-slate-800 leading-relaxed">
                         {formatTextWithHindi(point)}
                       </span>
                     </div>
@@ -244,7 +244,7 @@ export default function ConceptExplainer({
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 w-full glass border-t border-[var(--border)] px-6 py-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-white/95 border-t border-slate-200 px-6 py-4 shadow-[0_-8px_30px_rgba(15,23,42,0.06)] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex-1 w-full">
           {explanation?.explanation && (
             <TextToSpeech
@@ -259,7 +259,7 @@ export default function ConceptExplainer({
           variant="primary"
           size="lg"
           onClick={onNewCommand}
-          className="w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 shadow-md shadow-purple-500/25 py-3 px-6 text-base font-semibold"
+          className="w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 py-3 px-6 text-base font-semibold"
         >
           <span>Ask Something Else</span>
           <span>🎤</span>

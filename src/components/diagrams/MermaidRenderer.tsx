@@ -21,10 +21,20 @@ export default function MermaidRenderer({ chart, className = '' }: MermaidRender
       try {
         const mermaidModule = (await import('mermaid')).default;
         
+        const isLightTheme = document.querySelector('.theme-light') !== null;
+
         mermaidModule.initialize({
           startOnLoad: false,
-          theme: 'dark',
-          themeVariables: {
+          theme: isLightTheme ? 'default' : 'dark',
+          themeVariables: isLightTheme ? {
+            primaryColor: '#e0f2fe',
+            primaryTextColor: '#0f172a',
+            primaryBorderColor: '#bae6fd',
+            lineColor: '#64748b',
+            secondaryColor: '#f1f5f9',
+            tertiaryColor: '#ffffff',
+            fontFamily: 'Inter, sans-serif',
+          } : {
             primaryColor: '#3b82f6',
             primaryTextColor: '#f1f5f9',
             primaryBorderColor: '#1e293b',
@@ -63,12 +73,13 @@ export default function MermaidRenderer({ chart, className = '' }: MermaidRender
   }, [chart]);
 
   if (isLoading) {
+    const isLightTheme = typeof document !== 'undefined' && document.querySelector('.theme-light') !== null;
     return (
       <div className={`flex flex-col items-center justify-center p-8 rounded-[var(--radius)] bg-[var(--bg-surface)] border border-[var(--border)] w-full min-h-[250px] ${className}`}>
         <div className="w-full max-w-md space-y-4 animate-pulse">
-          <div className="h-6 bg-slate-800 rounded-md w-3/4 mx-auto" />
-          <div className="h-32 bg-slate-800 rounded-md w-full" />
-          <div className="h-4 bg-slate-800 rounded-md w-5/6 mx-auto" />
+          <div className={`h-6 rounded-md w-3/4 mx-auto ${isLightTheme ? 'bg-slate-200' : 'bg-slate-800'}`} />
+          <div className={`h-32 rounded-md w-full ${isLightTheme ? 'bg-slate-100' : 'bg-slate-800'}`} />
+          <div className={`h-4 rounded-md w-5/6 mx-auto ${isLightTheme ? 'bg-slate-200' : 'bg-slate-800'}`} />
         </div>
       </div>
     );

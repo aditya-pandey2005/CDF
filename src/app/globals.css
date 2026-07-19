@@ -332,3 +332,40 @@ textarea,
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ─── Light Theme Override ─── */
+.theme-light {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+}
+
+/* Redefine glass background for light theme */
+.theme-light .glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+}
+
+/* Custom scrollbar override for light theme */
+.theme-light::-webkit-scrollbar-track,
+.theme-light *::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.theme-light::-webkit-scrollbar-thumb,
+.theme-light *::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+.theme-light::-webkit-scrollbar-thumb:hover,
+.theme-light *::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+

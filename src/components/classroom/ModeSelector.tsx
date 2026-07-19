@@ -15,35 +15,35 @@ export default function ModeSelector({ activeMode, onModeChange }: ModeSelectorP
       label: 'Samjhao',
       subtitle: 'Explain',
       icon: '📖',
-      colorClass: 'text-[var(--accent-blue)] hover:text-blue-300',
-      activeColorClass: 'text-blue-400 font-extrabold',
+      colorClass: 'text-slate-500 hover:text-slate-800',
+      activeColorClass: 'text-blue-600 font-extrabold',
     },
     {
       id: 'quiz' as const,
       label: 'Quiz Banao',
       subtitle: 'Quiz',
       icon: '📝',
-      colorClass: 'text-[var(--accent-emerald)] hover:text-emerald-300',
-      activeColorClass: 'text-emerald-400 font-extrabold',
+      colorClass: 'text-slate-500 hover:text-slate-800',
+      activeColorClass: 'text-emerald-600 font-extrabold',
     },
     {
       id: 'whiteboard' as const,
       label: 'Whiteboard',
       subtitle: 'Board',
       icon: '🎨',
-      colorClass: 'text-[var(--accent-purple)] hover:text-purple-300',
-      activeColorClass: 'text-purple-400 font-extrabold',
+      colorClass: 'text-slate-500 hover:text-slate-800',
+      activeColorClass: 'text-purple-600 font-extrabold',
     },
   ];
 
   const getBackdropStyles = () => {
     switch (activeMode) {
       case 'explain':
-        return 'bg-[var(--accent-blue)]/15 border border-[var(--accent-blue)]/30 shadow-[0_0_16px_rgba(59,130,246,0.2)]';
+        return 'bg-white border border-slate-200 shadow-sm';
       case 'quiz':
-        return 'bg-[var(--accent-emerald)]/15 border border-[var(--accent-emerald)]/30 shadow-[0_0_16px_rgba(16,185,129,0.2)]';
+        return 'bg-white border border-slate-200 shadow-sm';
       case 'whiteboard':
-        return 'bg-[var(--accent-purple)]/15 border border-[var(--accent-purple)]/30 shadow-[0_0_16px_rgba(139,92,246,0.2)]';
+        return 'bg-white border border-slate-200 shadow-sm';
     }
   };
 
@@ -60,7 +60,7 @@ export default function ModeSelector({ activeMode, onModeChange }: ModeSelectorP
 
   return (
     <div className="w-full px-4" id="mode-selector-container">
-      <div className="relative grid grid-cols-3 p-1 rounded-2xl bg-slate-900/60 border border-[var(--border)] max-w-xl mx-auto w-full shadow-lg">
+      <div className="relative grid grid-cols-3 p-1 rounded-2xl bg-slate-100 border border-slate-200 max-w-xl mx-auto w-full shadow-sm">
         {/* Sliding Glow Backdrop */}
         <div
           className={`absolute top-1 bottom-1 left-1 w-[calc(33.333%-6px)] rounded-xl transition-all duration-300 ease-out ${getBackdropStyles()} ${getTranslation()}`}
@@ -77,7 +77,7 @@ export default function ModeSelector({ activeMode, onModeChange }: ModeSelectorP
               className={`
                 relative z-10 py-3 rounded-xl flex flex-col items-center justify-center gap-0.5
                 cursor-pointer transition-all duration-200 outline-none
-                ${isActive ? tab.activeColorClass : 'text-[var(--text-secondary)] hover:bg-slate-800/20'}
+                ${isActive ? tab.activeColorClass : `${tab.colorClass} hover:bg-white/40`}
               `}
               aria-current={isActive ? 'page' : undefined}
             >

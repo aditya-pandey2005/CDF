@@ -193,7 +193,7 @@ export default function ClassroomPage() {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col pt-16">
+    <div className="theme-light relative min-h-screen flex flex-col pt-16 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
       {/* ─── Command Bar (Fixed Top) ─── */}
       <CommandBar status={commandStatus} message={statusMessage} />
 
@@ -202,7 +202,7 @@ export default function ClassroomPage() {
         {!currentTopic ? (
           /* Welcome/Empty State */
           <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto px-6 py-12 text-center animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Namaste! 🙏 Main SikshaMitra hoon.
             </h1>
             <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium mb-12">
@@ -220,21 +220,21 @@ export default function ClassroomPage() {
                   </>
                 )}
                 {!isRecording && !isProcessing && (
-                  <span className="absolute w-20 h-20 rounded-full bg-blue-500/10 animate-pulse-glow" />
+                  <span className="absolute w-20 h-20 rounded-full bg-blue-500/5 animate-pulse-glow" />
                 )}
 
                 <button
                   onClick={handleToggleRecording}
                   disabled={isProcessing}
                   className={`
-                    relative z-10 w-20 h-20 rounded-full flex items-center justify-center border-2 border-white/10
-                    cursor-pointer shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 outline-none
+                    relative z-10 w-20 h-20 rounded-full flex items-center justify-center border border-slate-200/80
+                    cursor-pointer shadow-md transition-all duration-300 hover:scale-105 active:scale-95 outline-none
                     ${
                       isRecording
                         ? 'bg-[var(--accent-rose)] text-white shadow-[0_0_32px_rgba(244,63,94,0.4)]'
                         : isProcessing
                         ? 'bg-[var(--accent-blue)] text-white shadow-[0_0_24px_rgba(59,130,246,0.3)]'
-                        : 'bg-[var(--bg-card)] hover:bg-[var(--bg-surface)] text-[var(--text-primary)]'
+                        : 'bg-white hover:bg-slate-50 text-slate-700 shadow-sm border border-slate-200/60'
                     }
                   `}
                 >
@@ -262,7 +262,7 @@ export default function ClassroomPage() {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="w-8 h-8"
+                      className="w-8 h-8 text-blue-600"
                     >
                       <rect x="9" y="2" width="6" height="12" rx="3" />
                       <path d="M5 10a7 7 0 0 0 14 0" />
@@ -302,10 +302,10 @@ export default function ClassroomPage() {
                   <button
                     key={hint.text}
                     onClick={() => handleHintClick(hint.text)}
-                    className="p-4 rounded-2xl border border-[var(--border)] bg-slate-900/40 text-left hover:border-blue-500/40 hover:bg-blue-500/5 transition-all duration-300 group cursor-pointer"
+                    className="p-5 rounded-2xl border border-slate-200 bg-white text-left hover:border-blue-500/50 hover:bg-blue-50/30 shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer"
                   >
-                    <span className="text-2xl mb-2 block">{hint.emoji}</span>
-                    <p className="text-sm font-bold text-[var(--text-primary)] group-hover:text-blue-400 mb-1 leading-snug">
+                    <span className="text-2xl mb-2.5 block">{hint.emoji}</span>
+                    <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600 mb-1 leading-snug">
                       {hint.title}
                     </p>
                     <p className="text-xs text-[var(--text-muted)] leading-relaxed italic">
@@ -349,14 +349,14 @@ export default function ClassroomPage() {
                 onClick={handleToggleRecording}
                 disabled={isProcessing}
                 className={`
-                  w-14 h-14 rounded-full flex items-center justify-center border border-white/10
+                  w-14 h-14 rounded-full flex items-center justify-center border border-transparent
                   cursor-pointer shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 outline-none
                   ${
                     isRecording
-                      ? 'bg-[var(--accent-rose)] text-white animate-pulse'
+                      ? 'bg-[var(--accent-rose)] text-white animate-pulse shadow-rose-500/30'
                       : isProcessing
-                      ? 'bg-[var(--accent-blue)] text-white'
-                      : 'bg-gradient-to-tr from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-purple-500/20'
+                      ? 'bg-[var(--accent-blue)] text-white shadow-blue-500/30'
+                      : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-blue-500/20'
                   }
                 `}
                 title="Tap to speak new command"
